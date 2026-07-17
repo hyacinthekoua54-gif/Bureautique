@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation Bureautique Professionnelle — Word · Excel · PowerPoint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14161F;
+    --paper:#FAF9F6;
+    --paper-dim:#F1EFE9;
+    --word:#2B579A;
+    --excel:#1E7145;
+    --ppt:#C43E1C;
+    --muted:#6B6F7B;
+    --line:#E1DDD2;
+    --gold:#C9A24B;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{ font-family:'Space Grotesk', sans-serif; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,249,246,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; letter-spacing:0.02em; }
+  .brand .dot-row{ display:flex; gap:3px; }
+  .brand .dot{ width:8px; height:8px; border-radius:2px; }
+  .navlinks{ display:flex; gap:28px; font-size:14px; font-weight:500; color:var(--muted); }
+  .navlinks a{ transition:color .2s; padding:4px 0; border-bottom:2px solid transparent; }
+  .navlinks a:hover{ color:var(--ink); border-color:var(--gold); }
+  .nav-cta{
+    background:var(--ink); color:var(--paper); font-size:13px; font-weight:600;
+    padding:9px 18px; border-radius:100px; letter-spacing:0.02em;
+  }
+  .menu-toggle{ display:none; }
+
+  /* HERO */
+  header.hero{
+    background:var(--ink); color:var(--paper);
+    padding:96px 0 80px;
+    position:relative; overflow:hidden;
+  }
+  header.hero::after{
+    content:""; position:absolute; right:-120px; top:-120px; width:420px; height:420px;
+    background:radial-gradient(circle, rgba(43,87,154,0.35), rgba(196,62,28,0.15) 55%, transparent 70%);
+    border-radius:50%;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--gold); display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .eyebrow::before{ content:""; width:26px; height:1px; background:var(--gold); display:inline-block; }
+  .hero h1{
+    font-size:52px; font-weight:600; line-height:1.08; max-width:760px; letter-spacing:-0.01em;
+  }
+  .hero h1 .accent-word{ color:#6E9CDB; }
+  .hero h1 .accent-excel{ color:#5FCB93; }
+  .hero h1 .accent-ppt{ color:#F0876A; }
+  .hero p.lead{
+    margin-top:24px; font-size:17px; color:#C7C9D4; max-width:560px;
+  }
+  .hero-actions{ display:flex; gap:14px; margin-top:36px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--gold); color:var(--ink); font-weight:600; font-size:14.5px;
+    padding:14px 26px; border-radius:100px;
+  }
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,0.25); color:var(--paper); font-weight:500; font-size:14.5px;
+    padding:14px 26px; border-radius:100px;
+  }
+  .hero-stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:64px;
+    border-top:1px solid rgba(255,255,255,0.15); padding-top:28px; max-width:760px;
+  }
+  .hero-stats div{ padding-right:16px; }
+  .hero-stats .num{ font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:600; }
+  .hero-stats .lbl{ font-size:12.5px; color:#9A9DB0; margin-top:4px; }
+
+  /* SECTION GENERIC */
+  section{ padding:76px 0; border-bottom:1px solid var(--line); }
+  .section-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:44px; gap:24px; flex-wrap:wrap; }
+  .section-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);
+    display:flex; align-items:center; gap:8px; margin-bottom:10px;
+  }
+  .section-tag svg{ width:15px; height:15px; }
+  .section-head h2{ font-size:30px; font-weight:600; letter-spacing:-0.01em; }
+  .section-head p{ color:var(--muted); max-width:420px; font-size:14.5px; }
+
+  /* OBJECTIFS */
+  .objectifs-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:start; }
+  .objectif-main{
+    background:var(--paper-dim); border:1px solid var(--line); border-radius:14px; padding:32px;
+  }
+  .objectif-main p{ font-size:16px; color:#2C2F3A; }
+  .objectif-list{ display:flex; flex-direction:column; gap:18px; }
+  .obj-item{ display:flex; gap:14px; align-items:flex-start; }
+  .obj-icon{
+    flex:none; width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+    background:var(--ink); color:var(--paper);
+  }
+  .obj-icon svg{ width:17px; height:17px; }
+  .obj-item h4{ font-size:14.5px; font-weight:600; margin-bottom:3px; }
+  .obj-item p{ font-size:13.5px; color:var(--muted); }
+
+  /* PREREQUIS */
+  .prereq-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .prereq-card{
+    border:1px solid var(--line); border-radius:12px; padding:22px 18px; background:#fff;
+  }
+  .prereq-card svg{ width:22px; height:22px; margin-bottom:16px; color:var(--gold); }
+  .prereq-card h4{ font-size:14px; font-weight:600; margin-bottom:6px; }
+  .prereq-card p{ font-size:13px; color:var(--muted); }
+
+  /* PROGRAMME */
+  .prog-tabs{ display:flex; gap:10px; margin-bottom:32px; flex-wrap:wrap; }
+  .prog-tab{
+    font-size:13px; font-weight:600; padding:9px 16px; border-radius:100px; border:1px solid var(--line);
+    display:flex; align-items:center; gap:8px; cursor:pointer; color:var(--muted); background:#fff;
+    transition:all .2s;
+  }
+  .prog-tab .sw{ width:8px; height:8px; border-radius:50%; }
+  .prog-tab.active{ color:#fff; border-color:transparent; }
+  .prog-tab[data-app="word"].active{ background:var(--word); }
+  .prog-tab[data-app="excel"].active{ background:var(--excel); }
+  .prog-tab[data-app="ppt"].active{ background:var(--ppt); }
+
+  .app-panel{ display:none; }
+  .app-panel.active{ display:block; animation:fade .35s ease; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .app-head{ display:flex; align-items:center; gap:14px; margin-bottom:24px; }
+  .app-badge{
+    width:46px; height:46px; border-radius:11px; display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px;
+  }
+  .app-head h3{ font-size:22px; }
+  .app-head span{ font-size:13px; color:var(--muted); display:block; margin-top:2px; }
+
+  .seance-list{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .seance-card{
+    border:1px solid var(--line); border-radius:12px; padding:20px; background:#fff; position:relative;
+  }
+  .seance-card .num{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); letter-spacing:0.08em; margin-bottom:12px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .seance-card h5{ font-size:14.5px; font-weight:600; margin-bottom:10px; line-height:1.35; }
+  .seance-card ul{ list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .seance-card li{ font-size:12.5px; color:var(--muted); padding-left:14px; position:relative; }
+  .seance-card li::before{ content:"—"; position:absolute; left:0; color:var(--line); }
+
+  /* CALENDRIER TIMELINE */
+  .timeline{ position:relative; padding:20px 0 8px; }
+  .timeline-track{
+    display:grid; grid-template-columns:repeat(9,1fr); gap:0; position:relative;
+  }
+  .timeline-track::before{
+    content:""; position:absolute; top:17px; left:5%; right:5%; height:2px; background:var(--line); z-index:0;
+  }
+  .tl-node{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 4px; }
+  .tl-dot{
+    width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; margin-bottom:12px;
+    box-shadow:0 0 0 5px var(--paper);
+  }
+  .tl-node .tl-week{ font-size:10.5px; color:var(--muted); font-family:'IBM Plex Mono',monospace; letter-spacing:0.06em; }
+  .tl-node .tl-app{ font-size:12px; font-weight:600; margin-top:4px; }
+  .tl-node .tl-dur{ font-size:11px; color:var(--muted); margin-top:2px; }
+  .tl-node.milestone .tl-dot{ box-shadow:0 0 0 5px var(--paper), 0 0 0 7px var(--gold); }
+
+  .legend{ display:flex; gap:22px; margin-top:36px; flex-wrap:wrap; justify-content:center; }
+  .legend-item{ display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--muted); }
+  .legend-item .sw{ width:10px; height:10px; border-radius:3px; }
+
+  /* TARIF */
+  .tarif-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+  .price-card{
+    background:var(--ink); color:var(--paper); border-radius:16px; padding:36px;
+  }
+  .price-card .total-lbl{ font-size:12.5px; color:var(--gold); text-transform:uppercase; letter-spacing:0.12em; font-family:'IBM Plex Mono',monospace; }
+  .price-card .total-amt{ font-family:'Space Grotesk',sans-serif; font-size:42px; font-weight:700; margin:10px 0 4px; }
+  .price-card .total-sub{ font-size:13px; color:#9A9DB0; margin-bottom:28px; }
+  .price-bar{ display:flex; height:10px; border-radius:6px; overflow:hidden; margin-bottom:20px; }
+  .price-bar div:nth-child(1){ background:var(--gold); width:50%; }
+  .price-bar div:nth-child(2){ background:#6E9CDB; width:25%; }
+  .price-bar div:nth-child(3){ background:#5FCB93; width:25%; }
+  .price-steps{ display:flex; flex-direction:column; gap:16px; }
+  .price-step{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.12); padding-top:14px; }
+  .price-step .lbl{ font-size:13.5px; }
+  .price-step .lbl small{ display:block; color:#9A9DB0; font-size:11.5px; margin-top:2px; }
+  .price-step .amt{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:14.5px; }
+
+  .tarif-notes{ display:flex; flex-direction:column; gap:20px; padding-top:6px; }
+  .note-item{ display:flex; gap:14px; }
+  .note-item svg{ flex:none; width:20px; height:20px; color:var(--gold); margin-top:2px; }
+  .note-item h4{ font-size:14px; font-weight:600; margin-bottom:4px; }
+  .note-item p{ font-size:13.5px; color:var(--muted); }
+
+  /* FOOTER CTA */
+  footer{ background:var(--paper-dim); padding:64px 0; border-bottom:none; text-align:center; }
+  footer h2{ font-size:26px; margin-bottom:14px; }
+  footer p{ color:var(--muted); margin-bottom:28px; }
+
+  @media(max-width:860px){
+    .navlinks{ display:none; }
+    .hero h1{ font-size:36px; }
+    .hero-stats{ grid-template-columns:repeat(2,1fr); row-gap:24px; }
+    .objectifs-grid{ grid-template-columns:1fr; }
+    .prereq-grid{ grid-template-columns:repeat(2,1fr); }
+    .seance-list{ grid-template-columns:1fr; }
+    .timeline-track{ grid-template-columns:repeat(3,1fr); row-gap:28px; }
+    .timeline-track::before{ display:none; }
+    .tarif-wrap{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <span class="dot-row">
+        <span class="dot" style="background:var(--word)"></span>
+        <span class="dot" style="background:var(--excel)"></span>
+        <span class="dot" style="background:var(--ppt)"></span>
+      </span>
+      Formation Bureautique Pro
+    </div>
+    <div class="navlinks">
+      <a href="#objectifs">Objectifs</a>
+      <a href="#prerequis">Prérequis</a>
+      <a href="#programme">Programme</a>
+      <a href="#calendrier">Calendrier</a>
+      <a href="#tarif">Tarif</a>
+    </div>
+    <a href="#tarif" class="nav-cta">Demander un devis</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Formation entreprise · Suite Microsoft Office</div>
+    <h1>Word, Excel & PowerPoint,<br>maîtrisés pour de vrai <span class="accent-word">document</span> après <span class="accent-excel">tableau</span> après <span class="accent-ppt">diapositive</span>.</h1>
+    <p class="lead">Un programme de 9 séances conçu pour transformer les habitudes bureautiques de vos équipes : moins de temps perdu en mise en forme, plus de rigueur dans les livrables, une vraie autonomie sur les trois logiciels.</p>
+    <div class="hero-actions">
+      <a href="#tarif" class="btn-primary">Voir le tarif &amp; le calendrier</a>
+      <a href="#programme" class="btn-ghost">Découvrir le programme</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="num">9</div><div class="lbl">Séances au total</div></div>
+      <div><div class="num">2h</div><div class="lbl">Par séance</div></div>
+      <div><div class="num">3</div><div class="lbl">Logiciels couverts</div></div>
+      <div><div class="num">2/sem.</div><div class="lbl">Rythme des séances</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="objectifs">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+          Objectif de la formation
+        </div>
+        <h2>Une équipe autonome sur la suite Office</h2>
+      </div>
+      <p>La formation vise un changement d'habitudes durable, pas une simple découverte des menus.</p>
+    </div>
+    <div class="objectifs-grid">
+      <div class="objectif-main">
+        <p>À l'issue des 9 séances, les collaborateurs seront capables de produire des documents Word structurés, des classeurs Excel fiables et analytiques, et des présentations PowerPoint claires et professionnelles — en utilisant les bons outils plutôt que des solutions manuelles chronophages.</p>
+      </div>
+      <div class="objectif-list">
+        <div class="obj-item">
+          <div class="obj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><h4>Gagner du temps au quotidien</h4><p>Automatiser ce qui est aujourd'hui fait manuellement (mise en forme, rapports, publipostage).</p></div>
+        </div>
+        <div class="obj-item">
+          <div class="obj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><h4>Harmoniser les livrables</h4><p>Des documents, tableaux et supports conformes à la charte de l'entreprise.</p></div>
+        </div>
+        <div class="obj-item">
+          <div class="obj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><h4>Fiabiliser les données</h4><p>Réduire les erreurs de calcul et de saisie grâce aux bonnes pratiques Excel.</p></div>
+        </div>
+        <div class="obj-item">
+          <div class="obj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><h4>Renforcer la collaboration</h4><p>Coédition, suivi des modifications et partage maîtrisés sur les trois outils.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prerequis">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+          Prérequis
+        </div>
+        <h2>Ce qu'il faut avant de commencer</h2>
+      </div>
+      <p>Aucune expertise préalable n'est exigée — seulement ces quatre conditions.</p>
+    </div>
+    <div class="prereq-grid">
+      <div class="prereq-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <h4>Usage de base d'un ordinateur</h4>
+        <p>Clavier, souris et navigation dans un système d'exploitation.</p>
+      </div>
+      <div class="prereq-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M6 9l6 6 6-6"/><path d="M4 21h16"/></svg>
+        <h4>Microsoft Office installé</h4>
+        <p>Un ordinateur portable avec Word, Excel et PowerPoint pour chaque participant.</p>
+      </div>
+      <div class="prereq-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h4>Disponibilité sur la durée</h4>
+        <p>Présence aux 9 séances, à raison de deux séances de 2h par semaine.</p>
+      </div>
+      <div class="prereq-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4-4 7-7.5 7-11a7 7 0 10-14 0c0 3.5 3 7 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        <h4>Notions de base appréciées</h4>
+        <p>Une première familiarité avec la bureautique est un plus, mais pas obligatoire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="programme">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          Programme détaillé
+        </div>
+        <h2>3 logiciels, 3 séances chacun</h2>
+      </div>
+      <p>Chaque séance de 2h combine démonstration et exercices sur cas réels d'entreprise.</p>
+    </div>
+
+    <div class="prog-tabs">
+      <div class="prog-tab active" data-app="word" onclick="showApp('word')"><span class="sw" style="background:var(--word)"></span>Word — Séances 1 à 3</div>
+      <div class="prog-tab" data-app="excel" onclick="showApp('excel')"><span class="sw" style="background:var(--excel)"></span>Excel — Séances 4 à 6</div>
+      <div class="prog-tab" data-app="ppt" onclick="showApp('ppt')"><span class="sw" style="background:var(--ppt)"></span>PowerPoint — Séances 7 à 9</div>
+    </div>
+
+    <div class="app-panel active" id="panel-word">
+      <div class="app-head">
+        <div class="app-badge" style="background:var(--word)">W</div>
+        <div><h3>Microsoft Word</h3><span>Rédaction et documents professionnels structurés</span></div>
+      </div>
+      <div class="seance-list">
+        <div class="seance-card">
+          <div class="num"><span>SÉANCE 01</span><span>2h</span></div>
+          <h5>Bases essentielles &amp; documents structurés</h5>
+          <ul><li>Styles plutôt que mise en forme manuelle</li><li>Titres, table des matières automatique</li><li>En-têtes, pieds de page, numérotation</li></ul>
+        </div>
+        <div class="seance-card">
+          <div class="num"><span>SÉANCE 02</span><span>2h</span></div>
+          <h5>Productivité &amp; mise en page avancée</h5>
+          <ul><li>Publipostage pour courriers en masse</li><li>Tableaux et insertion de données Excel</li><li>Sections, orientations, images</li></ul>
+        </div>
+        <div class="seance-card">
+          <div class="num"><span>SÉANCE 03</span><span>2h</span></div>
+          <h5>Automatisation &amp; collaboration</h5>
+          <ul><li>Modèles réutilisables d'entreprise (.dotx)</li><li>Suivi des modifications et commentaires</li><li>Protection et export PDF</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-panel" id="panel-excel">
+      <div class="app-head">
+        <div class="app-badge" style="background:var(--excel)">X</div>
+        <div><h3>Microsoft Excel</h3><span>Calcul, analyse et fiabilisation des données</span></div>
+      </div>
+      <div class="seance-list">
+        <div class="seance-card">
+          <div class="num"><span>SÉANCE 04</span><span>2h</span></div>
+          <h5>Bases solides &amp; fonctions essentielles</h5>
+          <ul><li>Références relatives / absolues, plages nommées</li><li>RECHERCHEV/X, INDEX/EQUIV, SI</li><li>Mise en forme conditionnelle</li></ul>
+        </div>
+        <div class="seance-card">
+          <div class="num"><span>SÉANCE 05</span><span>2h</span></div>
+          <h5>Analyse de données &amp; tableaux</h5>
+          <ul><li>Tableaux croisés dynamiques</li><li>Graphiques dynamiques</li><li>Tableaux structurés, validation de données</li></ul>
+        </div>
+        <div class="seance-card">
+          <div class="num"><span>SÉANCE 06</span><span>2h</span></div>
+          <h5>Automatisation &amp; collaboration</h5>
+          <ul><li>Introduction à Power Query</li><li>Macros et bases VBA</li><li>Partage, protection, coédition</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-panel" id="panel-ppt">
+      <div class="app-head">
+        <div class="app-badge" style="background:var(--ppt)">P</div>
+        <div><h3>Microsoft PowerPoint</h3><span>Présentations claires, cohérentes et percutantes</span></div>
+      </div>
+      <div class="seance-list">
+        <div class="seance-card">
+          <div class="num"><span>SÉANCE 07</span><span>2h</span></div>
+          <h5>Conception &amp; contenu efficace</h5>
+          <ul><li>Masques de diapositives, charte graphique</li><li>Règles de lisibilité et hiérarchie visuelle</li><li>Graphiques Excel liés, SmartArt</li></ul>
+        </div>
+        <div class="seance-card">
+          <div class="num"><span>SÉANCE 08</span><span>2h</span></div>
+          <h5>Structuration &amp; dynamisme</h5>
+          <ul><li>Mode Plan et sections</li><li>Transitions et animations raisonnées</li><li>Minutage et mode présentateur</li></ul>
+        </div>
+        <div class="seance-card">
+          <div class="num"><span>SÉANCE 09</span><span>2h</span></div>
+          <h5>Collaboration &amp; diffusion</h5>
+          <ul><li>Commentaires et coédition en temps réel</li><li>Export PDF et vidéo</li><li>Bonnes pratiques en présentation à distance</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calendrier">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          Calendrier
+        </div>
+        <h2>9 séances, 2 par semaine</h2>
+      </div>
+      <p>Rythme de deux séances de 2h par semaine, réparties sur environ cinq semaines.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-track">
+        <div class="tl-node">
+          <div class="tl-dot" style="background:var(--word)">01</div>
+          <div class="tl-week">SEM. 1</div><div class="tl-app">Word</div><div class="tl-dur">2h</div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot" style="background:var(--word)">02</div>
+          <div class="tl-week">SEM. 1</div><div class="tl-app">Word</div><div class="tl-dur">2h</div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot" style="background:var(--word)">03</div>
+          <div class="tl-week">SEM. 2</div><div class="tl-app">Word</div><div class="tl-dur">2h</div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot" style="background:var(--excel)">04</div>
+          <div class="tl-week">SEM. 2</div><div class="tl-app">Excel</div><div class="tl-dur">2h</div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot" style="background:var(--excel)">05</div>
+          <div class="tl-week">SEM. 3</div><div class="tl-app">Excel</div><div class="tl-dur">2h</div>
+        </div>
+        <div class="tl-node milestone">
+          <div class="tl-dot" style="background:var(--excel)">06</div>
+          <div class="tl-week">SEM. 3</div><div class="tl-app">Excel</div><div class="tl-dur">2h · 25% dû</div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot" style="background:var(--ppt)">07</div>
+          <div class="tl-week">SEM. 4</div><div class="tl-app">PowerPoint</div><div class="tl-dur">2h</div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot" style="background:var(--ppt)">08</div>
+          <div class="tl-week">SEM. 4</div><div class="tl-app">PowerPoint</div><div class="tl-dur">2h</div>
+        </div>
+        <div class="tl-node milestone">
+          <div class="tl-dot" style="background:var(--ppt)">09</div>
+          <div class="tl-week">SEM. 5</div><div class="tl-app">PowerPoint</div><div class="tl-dur">2h · 25% dû</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="sw" style="background:var(--word)"></span>Module Word (séances 1-3)</div>
+      <div class="legend-item"><span class="sw" style="background:var(--excel)"></span>Module Excel (séances 4-6)</div>
+      <div class="legend-item"><span class="sw" style="background:var(--ppt)"></span>Module PowerPoint (séances 7-9)</div>
+      <div class="legend-item"><span class="sw" style="background:var(--gold)"></span>Échéance de paiement</div>
+    </div>
+  </div>
+</section>
+
+<section id="tarif">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1 3 2.2c0 2.8-6 1.3-6 4.1 0 1.4 1.3 2.4 3 2.4s3-1 3-2.3"/></svg>
+          Tarif &amp; modalités
+        </div>
+        <h2>Un investissement clair, en trois échéances</h2>
+      </div>
+      <p>Le tarif couvre l'intégralité des 9 séances, sur les trois logiciels, pour un groupe en entreprise.</p>
+    </div>
+
+    <div class="tarif-wrap">
+      <div class="price-card">
+        <div class="total-lbl">Forfait entreprise — 9 séances</div>
+        <div class="total-amt">600 000 <span style="font-size:20px; font-weight:500;">FCFA</span></div>
+        <div class="total-sub">Word · Excel · PowerPoint — 18 heures de formation</div>
+
+        <div class="price-bar"><div></div><div></div><div></div></div>
+
+        <div class="price-steps">
+          <div class="price-step">
+            <div class="lbl">À la réservation<small>50% — avance de démarrage</small></div>
+            <div class="amt">300 000 FCFA</div>
+          </div>
+          <div class="price-step">
+            <div class="lbl">À la 6ᵉ séance<small>25% — fin du module Excel</small></div>
+            <div class="amt">150 000 FCFA</div>
+          </div>
+          <div class="price-step">
+            <div class="lbl">À la 9ᵉ séance<small>25% — clôture de la formation</small></div>
+            <div class="amt">150 000 FCFA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tarif-notes">
+        <div class="note-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 3H8a2 2 0 00-2 2v14l6-3 6 3V5a2 2 0 00-2-2z"/></svg>
+          <div><h4>Formation en entreprise</h4><p>Dispensée dans les locaux du client, pour un groupe de collaborateurs.</p></div>
+        </div>
+        <div class="note-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v5"/></svg>
+          <div><h4>9 séances de 2h</h4><p>2 séances par semaine, réparties également entre les trois logiciels (3 séances chacun).</p></div>
+        </div>
+        <div class="note-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg>
+          <div><h4>Paiement échelonné</h4><p>50% à l'avance, puis 25% à la 6ᵉ séance et 25% à la 9ᵉ et dernière séance.</p></div>
+        </div>
+        <div class="note-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+          <div><h4>Attestation de fin de formation</h4><p>Remise à chaque participant à l'issue de la 9ᵉ séance.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Prêt à planifier la formation de vos équipes ?</h2>
+    <p>Réservez votre créneau et démarrez avec le module Word dès la première semaine.</p>
+    <a href="#tarif" class="btn-primary" style="background:var(--ink); color:var(--paper); display:inline-block;">Réserver la formation</a>
+  </div>
+</footer>
+
+<script>
+function showApp(app){
+  document.querySelectorAll('.prog-tab').forEach(t => t.classList.toggle('active', t.dataset.app === app));
+  document.querySelectorAll('.app-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + app).classList.add('active');
+}
+</script>
+
+</body>
+</html>
