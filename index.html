@@ -555,10 +555,6 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg>
           <div><h4>Paiement échelonné</h4><p>50% à l'avance, puis 25% à la 6ᵉ séance et 25% à la 9ᵉ et dernière séance.</p></div>
         </div>
-        <div class="note-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
-        
-        </div>
       </div>
     </div>
   </div>
@@ -578,6 +574,14 @@ function showApp(app){
   document.querySelectorAll('.app-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + app).classList.add('active');
 }
+
+// Désactive temporairement tous les liens de navigation (ancres) : clic sans effet
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+  });
+  link.style.cursor = 'default';
+});
 </script>
 
 </body>
